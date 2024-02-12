@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: sample
-        image: newdoinacr.azurecr.io/ahc-app:v1
+        image: newdoinacr.azurecr.io/ahc-app:1.0
         ports:
         - containerPort: 80
