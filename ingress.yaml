@@ -10,7 +10,14 @@ spec:
       - path: /
         backend:
           service:
-            name: sample
+            name: website
+            port: 
+              number: 3000
+        pathType: Prefix
+      - path: /api
+        backend:
+          service:
+            name: api
             port:
               number: 80
         pathType: Prefix
