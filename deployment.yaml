@@ -1,20 +1,53 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample
+  name: api
 spec:
-  revisionHistoryLimit: 0
+  replicas: 3
   selector:
     matchLabels:
-      app: sample
-  replicas: 4
+      app: api
   template:
     metadata:
       labels:
-        app: sample
+        app: api
     spec:
       containers:
-      - name: sample
-        image: newdoinacr.azurecr.io/newdoin-app:v1
+      - name: api
+        image: newdoinacr.azurecr.io/backend:v1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
         ports:
         - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+      - name: website
+        image: newdoinacr.azurecr.io/frontend:v1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 3000
