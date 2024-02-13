@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: api
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: api
@@ -30,7 +30,7 @@ kind: Deployment
 metadata:
   name: website
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: website
